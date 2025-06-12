@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    .moving-button {
+      transition: top 0.3s, left 0.3s;
+      position: absolute;
+    }
+  </style>
+</head>
+<body class="bg-pink-100 flex items-center justify-center">
+  <div id="main" class="text-center relative">
+    <h1 class="text-4xl font-bold text-pink-600 mb-10">
+      Marcia, quer ser meu amorzinho? 🥺👉👈
+    </h1>
+    <div class="flex justify-center space-x-6 relative">
+      <button
+        id="yesButton"
+        class="bg-green-400 hover:bg-green-500 text-white text-xl font-semibold px-6 py-3 rounded-2xl transition-all shadow-md"
+      >
+        Sim 💖
+      </button>
+      <button
+        id="noButton"
+        class="bg-red-400 text-white text-xl font-semibold px-6 py-3 rounded-2xl transition-all shadow-md moving-button"
+        style="top: 0px; left: 0px;"
+      >
+        Não 💔
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById("noButton");
+    const yesButton = document.getElementById("yesButton");
+    const mainDiv = document.getElementById("main");
+
+    noButton.addEventListener("mouseenter", () => {
+      const maxX = window.innerWidth - noButton.offsetWidth - 50;
+      const maxY = window.innerHeight - noButton.offsetHeight - 50;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noButton.style.left = `${randomX}px`;
+      noButton.style.top = `${randomY}px`;
+    });
+
+    yesButton.addEventListener("click", () => {
+      mainDiv.innerHTML = `
+        <div class="bg-pink-200 p-10 rounded-xl shadow-lg">
+          <p class="text-3xl text-center text-pink-700 font-bold">
+            { error: Você já é meu amorzinho }
+          </p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
